@@ -1,0 +1,31 @@
+AUTENTICACION 
+
+Métodos de Autenticación Seguros: 
+Utiliza métodos de autenticación seguros, como nombre de usuario y contraseña, OAuth, OpenID Connect u otros protocolos estándar de la 
+industria.
+
+Hashing y Salting de Contraseñas: Almacena las contraseñas de forma segura utilizando algoritmos de hashing robustos (como bcrypt o PBKDF2) 
+y salting para protegerlas contra ataques de fuerza bruta y ataques de diccionario.
+
+Inicio de Sesión Seguro: Implementa un proceso de inicio de sesión seguro que incluya la validación de credenciales, la gestión de sesiones 
+o tokens de autenticación y la protección contra ataques como la falsificación de solicitudes entre sitios (CSRF) y la inyección de código 
+malicioso (XSS).
+
+Autenticación Multifactor (MFA): Considera la posibilidad de implementar autenticación multifactor (MFA) para añadir una capa adicional de 
+seguridad, requiriendo que los usuarios proporcionen múltiples formas de identificación, como contraseñas, códigos de verificación SMS o 
+tokens de autenticación.
+
+
+AUTORIZACION
+Modelo de Autorización Basado en Roles (RBAC): Diseña un modelo de autorización basado en roles (RBAC) que defina los roles de usuario y 
+los permisos asociados a cada rol. Esto simplifica la gestión de permisos y facilita la escalabilidad de tu sistema.
+
+Control de Acceso Fino: Implementa un control de acceso fino para restringir el acceso a recursos específicos o acciones dentro de tu 
+aplicación. Esto garantiza que los usuarios solo puedan acceder a la información y realizar las acciones para las que están autorizados.
+
+Políticas de Acceso Granular: Define políticas de acceso granular que especifiquen quién puede acceder a qué recursos y en qué condiciones. 
+Esto proporciona una mayor flexibilidad y seguridad en la gestión de permisos.
+
+Auditoría y Registro de Actividades: Implementa un sistema de auditoría y registro de actividades para registrar todas las acciones 
+realizadas por los usuarios, incluyendo inicio de sesión, cambios de permisos y acceso a recursos sensibles. Esto facilita la detección de 
+actividades sospechosas o no autorizadas.

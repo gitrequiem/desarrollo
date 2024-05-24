@@ -1,0 +1,100 @@
+por favor, desarrollar una aplicacion API rest en python de acuerdo a las siguientes especificaciones:
+
+requerimientos:
+    consideraciones fundamentales:
+        api rest utilizando flask
+        es muy importante comentar todo el codigo para facilitar la interpretacion
+        
+        utilizar buenas practicas para manejo de archivos json incluyendo status, count y los objetos anidados
+
+    sobre la estructura:
+        mantener toda la estructura del proyecto modular y escalable, separando los archivos de los modelos y los de las rutas
+        que haya una carpeta para los models, otra para las rutas y otra para los utils
+        incluir en el directorio raiz un archivo requirements.txt con la lista de dependencias
+
+    requisitos:
+        implementar CORS
+        utilizar blueprint para registrar las rutas
+        NO utilizar la dependencia flask_alchemy que esta deprecada
+        utilizar try/except para el manejo de errores en todas las instrucciones a la base de datos
+        utilizar mysql con la siguiente URI:'mysql://api_requiem:api_requiem@localhost:3306/api_requiem'
+        utilizar sqlalchemy con create_engine
+        utilizar sqlalchemy.ext.declarative con declarative_base
+        utilizar sqlalchemy.exc con SQLAlchemyError
+        utilizar sqlalchemy.orm con sessionmaker, scoped_session
+
+
+entidades:
+    sobre las entidades:
+    desarrollar los modelos 
+    desarrollar las rutas con las vistas: 
+        get_all, get_one_by_id, get_one_by_name, create, update y delete
+        en las vistas create y update, validar que el nuevo atributo no exista en la tabla
+
+    lista de entidades:
+    nacionalidad:
+        entidad nacionalidad, tabla nacionalidades
+        atributos:
+            id_nacionalidad (int(8), pk, incremental)
+            nacionalidad (varchar(50))
+        metodos minimos:
+            __repr__
+            get_all
+
+
+
+utilizar logging para crear logs
+
+
+
+
+
+
+========================================
+
+Estructura
+
+Configuración de la Base de Datos (config.py)
+Creación de la Aplicación Flask y Configuración de SQLAlchemy (app/__init__.py)
+Modelos de Base de Datos (app/models/[modelo].py)
+Rutas de la Aplicación (app/routes/index.py y app/routes/[modelo].py)
+Sesiones de Base de Datos con SQLAlchemy
+
+
+Aplicación y base de datos
+
+En el archivo app/__init__.py, estamos configurando la aplicación Flask y la conexión a la base de datos 
+utilizando SQLAlchemy. En lugar de usar la extensión Flask-SQLAlchemy, estamos utilizando directamente SQLAlchemy 
+para una mayor flexibilidad y control.
+
+engine: El motor de base de datos que maneja la comunicación con la base de datos.
+sessionmaker: Una fábrica para crear nuevas sesiones de base de datos.
+scoped_session: Gestiona las sesiones de base de datos para que sean seguras en un entorno multi-hilo, asegurando que cada hilo obtenga su propia sesión.
+db_session: La instancia de scoped_session utilizada para realizar operaciones de base de datos en toda la aplicación.
+
+Utilizando SQLAlchemy como se ha configurado en el código, la aplicación es bastante segura contra inyecciones SQL 
+(SQL injections). SQLAlchemy maneja automáticamente la creación de consultas parametrizadas, que son una de las mejores 
+formas de prevenir las inyecciones
+Consultas Parametrizadas: 
+SQLAlchemy construye consultas utilizando parámetros en lugar de concatenar cadenas de texto, lo que elimina el riesgo de que un atacante pueda inyectar código SQL malicioso.
+ORM (Object-Relational Mapping):
+SQLAlchemy utiliza el mapeo objeto-relacional (ORM), lo que significa que las interacciones con la base de datos se hacen a través de objetos y métodos Python en lugar de escribir consultas SQL directamente.
+Esto abstrae las consultas SQL y permite que SQLAlchemy maneje los detalles, incluyendo la correcta escapación de valores.
+Escape Automático de Valores:
+SQLAlchemy escapa automáticamente los valores que se pasan a las consultas, lo que asegura que cualquier valor se trate correctamente y no pueda ser interpretado como código SQL.
+
+El uso de SQLAlchemy y sus prácticas de ORM hacen que el código sea seguro contra inyecciones SQL. 
+Sin embargo, es importante complementar esto con validaciones de entrada, manejo adecuado de errores y configuraciones 
+de seguridad en la base de datos para asegurar una aplicación robusta y segura.
+
+Explicación del Control de Errores
+
+En cada función de ruta, he agregado un bloque try-except para manejar excepciones de SQLAlchemy (SQLAlchemyError). 
+Dentro del bloque try, se ejecutan las operaciones de la base de datos. Si alguna excepción ocurre, el código en el bloque 
+except se ejecuta para manejar el error.
+Dentro del bloque except, realizamos un rollback() en la sesión para deshacer cualquier cambio pendiente en la base de 
+datos y devolvemos una respuesta JSON apropiada con un código de estado HTTP 500 (Error interno del servidor). 
+Esto asegura que se manejen los errores de manera adecuada y se devuelva una respuesta significativa en caso de que ocurra 
+un problema durante la ejecución de la consulta.
+
+

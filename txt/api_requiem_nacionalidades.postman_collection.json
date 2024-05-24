@@ -1,0 +1,73 @@
+{
+	"info": {
+		"_postman_id": "068501d3-995b-4ad1-bb16-b0a04ae884bc",
+		"name": "api_requiem_nacionalidades",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "33529149"
+	},
+	"item": [
+		{
+			"name": "get_all",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://127.0.0.1:5000/nacionalidades/"
+			},
+			"response": []
+		},
+		{
+			"name": "get_nacionalidad_by_id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://127.0.0.1:5000/nacionalidades/1"
+			},
+			"response": []
+		},
+		{
+			"name": "get_nacionalidad_by_nacionalidad",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://127.0.0.1:5000/nacionalidades/1"
+			},
+			"response": []
+		},
+		{
+			"name": "create_nacionalidad",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": "http://127.0.0.1:5000/nacionalidades"
+			},
+			"response": []
+		},
+		{
+			"name": "update_nacionalidad",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nacionalidad\":\"Perú\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://127.0.0.1:5000/nacionalidades/5"
+			},
+			"response": []
+		},
+		{
+			"name": "delete_nacionalidad",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "http://127.0.0.1:5000/nacionalidades/5"
+			},
+			"response": []
+		}
+	]
+}

@@ -1,0 +1,49 @@
+proyecto/
+│
+├── app/
+│   ├── __init__.py
+│   ├── models/
+│   │   └── nacionalidad.py
+│   ├── routes/
+│   │   └── nacionalidades.py
+│   ├── configs/
+│   │   ├── config.py
+│   │   └── database.py
+│   └── utils/
+│       └── (archivos futuros)
+└── run.py
+
+
+por cada entidad hay que generar:
+
+    el archivo en la carpeta models:
+        nombre en singular
+        importar: 
+            from sqlalchemy import Column, Integer, String  # dependencias SQLAlchemy
+            from app.configs.database import Base           # Conexión
+        metodos:
+            __tablename__
+            __init__
+            __repr__
+            __serialize__
+
+    el archivo en la carpeta routes:
+        nombre en plural
+        importar:
+            from flask import Blueprint, jsonify, request       # dependencias Flask
+            from app.configs.database import SessionLocal       # sesión de la BD
+            from app.models.nacionalidad import Nacionalidad    # Reemplazar nacionalidad por el modelo que corresponda
+        tener en cuenta:
+            generar la ruta en Blueprint
+            validar
+            estandar para formatos json: status, count, data (con la lista de objetos)
+            manejar error de la bd siempre que haya querys (hacer el try/except)
+            en finally siempre cerrar conexion .close()
+            
+        Blueprint: Se explica que se utiliza para organizar y desacoplar las rutas en módulos.
+        Rutas: Se detallan las operaciones específicas de cada ruta (GET, POST, PUT, DELETE) y lo que cada una hace.
+        Manejo de Sesión: Se explica que se abre una nueva sesión de base de datos al inicio de cada ruta y se asegura que se cierra al final.
+        Manejo de Errores: Se detalla el uso de bloques try/except para manejar errores y se asegura el cierre adecuado de la sesión.
+        Estructura de la Respuesta: Se describen las buenas prácticas para estructurar las respuestas JSON, incluyendo el estado, la cuenta de resultados y los datos anidados.
+        Validaciones: Se explica la lógica de validación para evitar duplicados al crear y actualizar nacionalidades.
+

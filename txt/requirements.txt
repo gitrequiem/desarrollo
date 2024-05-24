@@ -1,0 +1,9 @@
+Las dependencias requeridas para este proyecto son las siguientes:
+
+Flask: El framework web utilizado para desarrollar la aplicación.
+Flask-Cors: Una extensión de Flask que maneja las solicitudes CORS.
+SQLAlchemy: Una biblioteca SQL para Python que facilita la interacción con bases de datos SQL.
+#PyMySQL: Un controlador MySQL para SQLAlchemy.
+
+
+pip install -U Flask Flask-Cors SQLAlchemy #PyMySQL
